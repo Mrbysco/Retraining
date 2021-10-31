@@ -1,3 +1,5 @@
+[![build](https://github.com/Mrbysco/Retraining/actions/workflows/build.yml/badge.svg)](https://github.com/Mrbysco/Retraining/actions/workflows/build.yml) [![](http://cf.way2muchnoise.eu/versions/543209_latest.svg)](https://www.curseforge.com/minecraft/mc-mods/retraining)
+
 # Retraining #
 
 ## About ##
