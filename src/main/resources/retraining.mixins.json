@@ -1,0 +1,19 @@
+{
+  "required": true,
+  "minVersion": "0.8.4",
+  "compatibilityLevel": "JAVA_8",
+  "package": "com.mrbysco.retraining.mixin",
+  "refmap": "retraining.refmap.json",
+  "target": "@env(DEFAULT)",
+  "mixins": [
+    "AbstractVillagerEntityAccessor",
+    "MerchantContainerAccessor",
+    "VillagerEntityAccessor"
+  ],
+  "client": [
+	"MerchantScreenMixin"
+  ],
+  "injectors": {
+	"defaultRequire": 1
+  }
+}

@@ -1,0 +1,20 @@
+modLoader="javafml"
+loaderVersion="[36,)"
+issueTrackerURL="https://github.com/Mrbysco/Retraining"
+license="MIT"
+
+[[mods]]
+modId="retraining"
+version="${file.jarVersion}"
+displayName="Retraining"
+displayURL="https://www.curseforge.com/minecraft/mc-mods/retraining"
+authors="Mrbysco, ShyNieke"
+description='''
+
+'''
+[[dependencies.retraining]]
+modId="minecraft"
+mandatory=true
+versionRange="[1.16.5,1.17)"
+ordering="NONE"
+side="BOTH"
