@@ -10,7 +10,7 @@ displayName="Retraining"
 displayURL="https://www.curseforge.com/minecraft/mc-mods/retraining"
 authors="Mrbysco, ShyNieke"
 description='''
-
+Recycle your villager trades today :D
 '''
 [[dependencies.retraining]]
 modId="minecraft"

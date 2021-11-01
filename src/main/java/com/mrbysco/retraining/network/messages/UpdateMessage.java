@@ -8,23 +8,26 @@ import java.util.function.Supplier;
 
 public class UpdateMessage {
 	private final boolean villager;
-	public UpdateMessage(boolean villager) {
+	private final int experience;
+	public UpdateMessage(boolean villager, int experience) {
 		this.villager = villager;
+		this.experience = experience;
 	}
 
 	public void encode(PacketBuffer buf) {
 		buf.writeBoolean(villager);
+		buf.writeInt(experience);
 	}
 
 	public static UpdateMessage decode(final PacketBuffer packetBuffer) {
-		return new UpdateMessage(packetBuffer.readBoolean());
+		return new UpdateMessage(packetBuffer.readBoolean(), packetBuffer.readInt());
 	}
 
 	public void handle(Supplier<Context> context) {
 		Context ctx = context.get();
 		ctx.enqueueWork(() -> {
 			if (ctx.getDirection().getReceptionSide().isClient()) {
-				Retraining.isVillager = villager;
+				Retraining.isVillager = experience == 0 && villager;
 			}
 		});
 		ctx.setPacketHandled(true);

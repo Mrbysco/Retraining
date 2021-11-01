@@ -29,7 +29,7 @@ public abstract class MerchantContainerMixin extends Container {
 	public void retrainingConstructor(int id, PlayerInventory playerInventory, IMerchant merchant, CallbackInfo ci) {
 		PlayerEntity player = playerInventory.player;
 		if(!player.level.isClientSide) {
-			PacketHandler.CHANNEL.send(PacketDistributor.PLAYER.with(() -> (ServerPlayerEntity)playerInventory.player), new UpdateMessage(merchant instanceof VillagerEntity));
+			PacketHandler.CHANNEL.send(PacketDistributor.PLAYER.with(() -> (ServerPlayerEntity)playerInventory.player), new UpdateMessage(merchant instanceof VillagerEntity, merchant.getVillagerXp()));
 		}
 	}
 }
