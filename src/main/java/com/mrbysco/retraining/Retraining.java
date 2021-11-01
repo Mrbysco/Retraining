@@ -13,6 +13,8 @@ public class Retraining {
     public static final String MOD_ID = "retraining";
     private static final Logger LOGGER = LogManager.getLogger();
 
+    public static boolean isVillager = false;
+
     public Retraining() {
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
         eventBus.addListener(this::setup);

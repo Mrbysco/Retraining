@@ -1,5 +1,6 @@
 package com.mrbysco.retraining.mixin;
 
+import com.mrbysco.retraining.Retraining;
 import com.mrbysco.retraining.network.PacketHandler;
 import com.mrbysco.retraining.network.messages.ResetTradesMessage;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
@@ -23,8 +24,10 @@ public abstract class MerchantScreenMixin extends ContainerScreen<MerchantContai
 
 	@Inject(at = @At("TAIL"), method = "init()V")
 	public void retrainingInit(CallbackInfo ci) {
-		this.addButton(new Button(width / 2 + 112, height / 2 - 78, 20, 20, new StringTextComponent("\u27f3"), (button) -> {
-			PacketHandler.CHANNEL.sendToServer(new ResetTradesMessage());
-		}));
+		if(Retraining.isVillager) {
+			this.addButton(new Button(width / 2 + 112, height / 2 - 78, 20, 20, new StringTextComponent("\u27f3"), (button) -> {
+				PacketHandler.CHANNEL.sendToServer(new ResetTradesMessage());
+			}));
+		}
 	}
 }
