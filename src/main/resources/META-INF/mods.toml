@@ -1,6 +1,6 @@
 modLoader="javafml"
-loaderVersion="[36,)"
-issueTrackerURL="https://github.com/Mrbysco/Retraining"
+loaderVersion="[37,)"
+issueTrackerURL="https://github.com/Mrbysco/Retraining/issues"
 license="MIT"
 
 [[mods]]
@@ -15,6 +15,6 @@ Recycle your villager trades today :D
 [[dependencies.retraining]]
 modId="minecraft"
 mandatory=true
-versionRange="[1.16.5,1.17)"
+versionRange="[1.17.1,1.18)"
 ordering="NONE"
 side="BOTH"

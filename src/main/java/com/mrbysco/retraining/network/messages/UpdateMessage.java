@@ -1,8 +1,8 @@
 package com.mrbysco.retraining.network.messages;
 
 import com.mrbysco.retraining.Retraining;
-import net.minecraft.network.PacketBuffer;
-import net.minecraftforge.fml.network.NetworkEvent.Context;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraftforge.fmllegacy.network.NetworkEvent.Context;
 
 import java.util.function.Supplier;
 
@@ -14,12 +14,12 @@ public class UpdateMessage {
 		this.experience = experience;
 	}
 
-	public void encode(PacketBuffer buf) {
+	public void encode(FriendlyByteBuf buf) {
 		buf.writeBoolean(villager);
 		buf.writeInt(experience);
 	}
 
-	public static UpdateMessage decode(final PacketBuffer packetBuffer) {
+	public static UpdateMessage decode(final FriendlyByteBuf packetBuffer) {
 		return new UpdateMessage(packetBuffer.readBoolean(), packetBuffer.readInt());
 	}
 

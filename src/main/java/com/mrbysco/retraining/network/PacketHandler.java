@@ -3,9 +3,9 @@ package com.mrbysco.retraining.network;
 import com.mrbysco.retraining.Retraining;
 import com.mrbysco.retraining.network.messages.ResetTradesMessage;
 import com.mrbysco.retraining.network.messages.UpdateMessage;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.network.NetworkRegistry;
-import net.minecraftforge.fml.network.simple.SimpleChannel;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraftforge.fmllegacy.network.NetworkRegistry;
+import net.minecraftforge.fmllegacy.network.simple.SimpleChannel;
 
 public class PacketHandler {
 	private static final String PROTOCOL_VERSION = "1";
