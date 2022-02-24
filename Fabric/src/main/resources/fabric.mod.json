@@ -1,0 +1,43 @@
+{
+    "schemaVersion": 1,
+    "id": "retraining",
+    "version": "${version}",
+  
+    "name": "Retraining",
+    "description": "Recycle your villager trades today :D",
+    "authors": [
+      "Mrbysco, ShyNieke"
+    ],
+    "contact": {
+      "homepage": "https://www.curseforge.com/minecraft/mc-mods/retraining",
+      "sources": "https://github.com/Mrbysco/retraining",
+      "issues": "https://github.com/Mrbysco/retraining/issues"
+    },
+  
+    "license": "MIT",
+    "icon": "assets/modid/icon.png",
+  
+    "environment": "*",
+    "entrypoints": {
+      "main": [
+        "com.mrbysco.retraining.FabricRetraining"
+      ],
+      "client": [
+        "com.mrbysco.retraining.FabricClientRetraining"
+      ]
+    },
+    "mixins": [
+      "retraining.mixins.json",
+	  "retraining.fabric.mixins.json"
+    ],
+  
+    "depends": {
+      "fabricloader": ">=0.12",
+      "fabric": "*",
+      "minecraft": "1.18.x",
+      "java": ">=17"
+    },
+    "suggests": {
+      "another-mod": "*"
+    }
+}
