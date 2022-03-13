@@ -13,13 +13,13 @@ import net.minecraftforge.network.PacketDistributor;
 
 public class ForgePlatformHelper implements IPlatformHelper {
 
-    @Override
-    public void sendResetTradesMessage() {
-        PacketHandler.CHANNEL.sendToServer(new ResetTradesMessage());
-    }
+	@Override
+	public void sendResetTradesMessage() {
+		PacketHandler.CHANNEL.sendToServer(new ResetTradesMessage());
+	}
 
-    @Override
-    public void sendUpdateMessage(Player player, boolean villager, int experience) {
-        PacketHandler.CHANNEL.send(PacketDistributor.PLAYER.with(() -> (ServerPlayer)player), new UpdateMessage(villager, experience));
-    }
+	@Override
+	public void sendUpdateMessage(Player player, boolean villager, int experience) {
+		PacketHandler.CHANNEL.send(PacketDistributor.PLAYER.with(() -> (ServerPlayer) player), new UpdateMessage(villager, experience));
+	}
 }

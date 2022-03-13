@@ -9,6 +9,7 @@ import java.util.function.Supplier;
 public class UpdateMessage {
 	private final boolean villager;
 	private final int experience;
+
 	public UpdateMessage(boolean villager, int experience) {
 		this.villager = villager;
 		this.experience = experience;

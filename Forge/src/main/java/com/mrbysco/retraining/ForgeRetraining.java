@@ -8,16 +8,16 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 @Mod(Constants.MOD_ID)
 public class ForgeRetraining {
-    
-    public ForgeRetraining() {
-        IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
-        CommonRetraining.init();
+	public ForgeRetraining() {
+		IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
-        eventBus.addListener(this::setup);
-    }
+		CommonRetraining.init();
 
-    private void setup(final FMLCommonSetupEvent event) {
-        PacketHandler.init();
-    }
+		eventBus.addListener(this::setup);
+	}
+
+	private void setup(final FMLCommonSetupEvent event) {
+		PacketHandler.init();
+	}
 }

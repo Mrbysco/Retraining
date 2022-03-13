@@ -32,14 +32,14 @@ public class ResetTradesMessage {
 			if (ctx.getDirection().getReceptionSide().isServer() && ctx.getSender() != null) {
 				ServerPlayer player = ctx.getSender();
 				AbstractContainerMenu container = player.containerMenu;
-				if(container instanceof MerchantMenu) {
-					Merchant merchant = ((MerchantMenuAccessor)container).getTrader();
-					if(merchant instanceof Villager villager) {
-						if(villager.getVillagerXp() == 0) {
+				if (container instanceof MerchantMenu) {
+					Merchant merchant = ((MerchantMenuAccessor) container).getTrader();
+					if (merchant instanceof Villager villager) {
+						if (villager.getVillagerXp() == 0) {
 							MerchantOffers newOffers = new MerchantOffers();
-							((AbstractVillagerEntityAccessor)villager).setOffers(newOffers);
-							((VillagerAccessor)villager).invokeUpdateTrades();
-							((VillagerAccessor)villager).invokeUpdateSpecialPrices(player);
+							((AbstractVillagerEntityAccessor) villager).setOffers(newOffers);
+							((VillagerAccessor) villager).invokeUpdateTrades();
+							((VillagerAccessor) villager).invokeUpdateSpecialPrices(player);
 							player.sendMerchantOffers(container.containerId, newOffers, villager.getVillagerData().getLevel(),
 									villager.getVillagerXp(), villager.showProgressBar(), villager.canRestock());
 						}
