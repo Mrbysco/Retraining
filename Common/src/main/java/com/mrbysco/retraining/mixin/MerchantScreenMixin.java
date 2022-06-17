@@ -6,6 +6,7 @@ import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.gui.screens.inventory.MerchantScreen;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TextComponent;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.MerchantMenu;
 import org.spongepowered.asm.mixin.Mixin;
@@ -23,7 +24,7 @@ public abstract class MerchantScreenMixin extends AbstractContainerScreen<Mercha
 	@Inject(at = @At("TAIL"), method = "init()V")
 	public void retrainingInit(CallbackInfo ci) {
 		if (CommonRetraining.isVillager) {
-			this.addRenderableWidget(new Button(width / 2 + 112, height / 2 - 78, 20, 20, Component.literal("\u27f3"), (button) -> {
+			this.addRenderableWidget(new Button(width / 2 + 112, height / 2 - 78, 20, 20, new TextComponent("\u27f3"), (button) -> {
 				Services.PLATFORM.sendResetTradesMessage();
 			}));
 		}
