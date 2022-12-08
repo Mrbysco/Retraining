@@ -49,12 +49,6 @@ tasks.withType(JavaCompile) {
     source(project(":Common").sourceSets.main.allSource)
 }
 
-jar {
-    from("LICENSE") {
-        rename { "${it}_${mod_name}" }
-    }
-}
-
 publishing {
     publications {
         mavenJava(MavenPublication) {
