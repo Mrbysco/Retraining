@@ -23,7 +23,7 @@ public abstract class MerchantMenuMixin extends AbstractContainerMenu {
 	@Inject(at = @At("TAIL"), method = "<init>(ILnet/minecraft/world/entity/player/Inventory;Lnet/minecraft/world/item/trading/Merchant;)V")
 	public void retrainingConstructor(int id, Inventory playerInventory, Merchant merchant, CallbackInfo ci) {
 		Player player = playerInventory.player;
-		if (!player.level.isClientSide) {
+		if (!player.level().isClientSide) {
 			Services.PLATFORM.sendUpdateMessage(player, merchant instanceof Villager, merchant.getVillagerXp());
 		}
 	}

@@ -13,7 +13,6 @@
     "issues": "https://github.com/Mrbysco/retraining/issues"
   },
   "license": "MIT",
-  "icon": "assets/modid/icon.png",
   "environment": "*",
   "entrypoints": {
     "main": [
@@ -29,10 +28,7 @@
   "depends": {
     "fabricloader": ">=0.14",
     "fabric": "*",
-    "minecraft": ">=1.19.4",
+    "minecraft": "~1.20",
     "java": ">=17"
-  },
-  "suggests": {
-    "another-mod": "*"
   }
 }
