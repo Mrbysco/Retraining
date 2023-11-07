@@ -26,9 +26,9 @@
     "retraining.mixins.json"
   ],
   "depends": {
-    "fabricloader": ">=0.14",
+    "fabricloader": ">=0.14.24",
     "fabric": "*",
-    "minecraft": "~1.20",
+    "minecraft": "~1.20.2",
     "java": ">=17"
   }
 }
