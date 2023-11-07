@@ -10,9 +10,7 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.MerchantMenu;
 import net.minecraft.world.item.trading.Merchant;
 import net.minecraft.world.item.trading.MerchantOffers;
-import net.minecraftforge.network.NetworkEvent.Context;
-
-import java.util.function.Supplier;
+import net.neoforged.neoforge.network.NetworkEvent;
 
 public class ResetTradesMessage {
 
@@ -26,8 +24,7 @@ public class ResetTradesMessage {
 		return new ResetTradesMessage();
 	}
 
-	public void handle(Supplier<Context> context) {
-		Context ctx = context.get();
+	public void handle(NetworkEvent.Context ctx) {
 		ctx.enqueueWork(() -> {
 			if (ctx.getDirection().getReceptionSide().isServer() && ctx.getSender() != null) {
 				ServerPlayer player = ctx.getSender();

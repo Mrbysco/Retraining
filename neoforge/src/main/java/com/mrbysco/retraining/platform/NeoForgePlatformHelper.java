@@ -5,13 +5,10 @@ import com.mrbysco.retraining.network.messages.ResetTradesMessage;
 import com.mrbysco.retraining.network.messages.UpdateMessage;
 import com.mrbysco.retraining.platform.services.IPlatformHelper;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.entity.player.Player;
-import net.minecraftforge.fml.ModList;
-import net.minecraftforge.fml.loading.FMLLoader;
-import net.minecraftforge.network.PacketDistributor;
+import net.neoforged.neoforge.network.PacketDistributor;
 
-public class ForgePlatformHelper implements IPlatformHelper {
+public class NeoForgePlatformHelper implements IPlatformHelper {
 
 	@Override
 	public void sendResetTradesMessage() {

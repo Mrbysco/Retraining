@@ -1,49 +1,57 @@
 plugins {
-    id 'java'
+    id 'java-library'
+    id 'eclipse'
     id 'idea'
     id 'maven-publish'
-    id 'fabric-loom'
+    id 'net.neoforged.gradle.userdev'
     id 'net.darkhax.curseforgegradle'
     id 'com.modrinth.minotaur'
 }
 
 base {
-    archivesName = "${mod_name}-fabric-${minecraft_version}"
+    archivesName = "${mod_name}-neoforge-${minecraft_version}"
 }
+
+if (file('src/main/resources/META-INF/accesstransformer.cfg').exists()) {
+    minecraft.accessTransformers.file rootProject.file('src/main/resources/META-INF/accesstransformer.cfg')
+}
+
+runs {
+    // applies to all the run configs below
+    configureEach {
+        // Recommended logging data for a userdev environment
+        systemProperty 'forge.logging.markers', 'REGISTRIES'
+
+        // Recommended logging level for the console
+        systemProperty 'forge.logging.console.level', 'debug'
+
+        //Limit ram usage for the dev environment to 4GB
+        jvmArgument '-Xmx4G'
+
+        systemProperty 'mixin.env.disableRefMap', 'true'
+
+        modSource project.sourceSets.main
+    }
+
+    client {
+        // Comma-separated list of namespaces to load gametests from. Empty = all namespaces.
+        systemProperty 'forge.enabledGameTestNamespaces', "${mod_id}"
+    }
+
+    server {
+        systemProperty 'forge.enabledGameTestNamespaces', "${mod_id}"
+        programArgument '--nogui'
+    }
+}
+
+sourceSets.main.resources.srcDir 'src/generated/resources'
 
 dependencies {
-    minecraft "com.mojang:minecraft:${minecraft_version}"
-    mappings loom.officialMojangMappings()
-    modImplementation "net.fabricmc:fabric-loader:${fabric_loader_version}"
-    modImplementation "net.fabricmc.fabric-api:fabric-api:${fabric_version}"
-    implementation project(":common")
+    implementation "net.neoforged:neoforge:${neo_version}"
+    compileOnly project(":common")
 }
 
-loom {
-    if (project(":common").file("src/main/resources/${mod_id}.accesswidener").exists()) {
-        accessWidenerPath.set(project(":common").file("src/main/resources/${mod_id}.accesswidener"))
-    }
-    mixin {
-        defaultRefmapName.set("${mod_id}.refmap.json")
-    }
-    runs {
-        client {
-            client()
-            setConfigName("Fabric Client")
-            ideConfigGenerated(true)
-            runDir("run")
-        }
-        server {
-            server()
-            setConfigName("Fabric Server")
-            ideConfigGenerated(true)
-            runDir("run")
-        }
-    }
-}
-
-
-tasks.withType(JavaCompile).configureEach {
+tasks.named('compileJava', JavaCompile).configure {
     source(project(":common").sourceSets.main.allSource)
 }
 tasks.withType(Javadoc).configureEach {
@@ -59,14 +67,13 @@ processResources {
 
 publishing {
     publications {
-        mavenJava(MavenPublication) {
+        register('mavenJava', MavenPublication) {
             groupId project.group
             artifactId base.archivesName.get()
             version project.version
             from components.java
         }
     }
-
     repositories {
         if (System.getenv().SAP_SECRET) {
             maven {
@@ -84,16 +91,16 @@ if (System.getenv().CURSEFORGE_KEY) {
     task curseforge(type: net.darkhax.curseforgegradle.TaskPublishCurseForge) {
         apiToken = System.getenv().CURSEFORGE_KEY
 
-        def mainFile = upload(project.curseforge_id, remapJar)
-        mainFile.releaseType = 'alpha'
-        mainFile.addGameVersion "Fabric"
+        def mainFile = upload(project.curseforge_id, jar)
+        mainFile.releaseType = 'beta'
+        mainFile.addGameVersion "NeoForge"
         mainFile.addGameVersion "${mc_version}"
         mainFile.addGameVersion "Java 17"
 
         mainFile.changelog = file("$project.rootDir/changelog.md")
         mainFile.changelogType = 'markdown'
 
-        mainFile.addRequirement("fabric-api")
+//        mainFile.addRequirement()
 //        mainFile.addOptional()
     }
 }
@@ -102,16 +109,12 @@ if (System.getenv().MODRINTH_KEY) {
     modrinth {
         token = System.getenv().MODRINTH_KEY
         projectId = project.modrinth_id
-        versionType = "alpha"
+        versionType = "beta"
         versionName = "${mod_name} ${minecraft_version}"
         versionNumber = project.version
-        uploadFile = remapJar
+        uploadFile = jar
         changelog = file("$project.rootDir/changelog.md").text
         gameVersions = ["${minecraft_version}"]
-        loaders = ["fabric"]
-
-        dependencies {
-            required.project "fabric-api"
-        }
+        loaders = ["neoforge"]
     }
 }

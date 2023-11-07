@@ -4,8 +4,8 @@ import com.mrbysco.retraining.Constants;
 import com.mrbysco.retraining.network.messages.ResetTradesMessage;
 import com.mrbysco.retraining.network.messages.UpdateMessage;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraftforge.network.NetworkRegistry;
-import net.minecraftforge.network.simple.SimpleChannel;
+import net.neoforged.neoforge.network.NetworkRegistry;
+import net.neoforged.neoforge.network.simple.SimpleChannel;
 
 public class PacketHandler {
 	private static final String PROTOCOL_VERSION = "1";

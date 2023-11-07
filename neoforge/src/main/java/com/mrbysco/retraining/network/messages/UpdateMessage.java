@@ -2,9 +2,7 @@ package com.mrbysco.retraining.network.messages;
 
 import com.mrbysco.retraining.CommonRetraining;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraftforge.network.NetworkEvent.Context;
-
-import java.util.function.Supplier;
+import net.neoforged.neoforge.network.NetworkEvent;
 
 public class UpdateMessage {
 	private final boolean villager;
@@ -24,8 +22,7 @@ public class UpdateMessage {
 		return new UpdateMessage(packetBuffer.readBoolean(), packetBuffer.readInt());
 	}
 
-	public void handle(Supplier<Context> context) {
-		Context ctx = context.get();
+	public void handle(NetworkEvent.Context ctx) {
 		ctx.enqueueWork(() -> {
 			if (ctx.getDirection().getReceptionSide().isClient()) {
 				CommonRetraining.isVillager = experience == 0 && villager;
