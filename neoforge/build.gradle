@@ -35,11 +35,11 @@ runs {
 
     client {
         // Comma-separated list of namespaces to load gametests from. Empty = all namespaces.
-        systemProperty 'forge.enabledGameTestNamespaces', "${mod_id}"
+        systemProperty 'neoforge.enabledGameTestNamespaces', "${mod_id}"
     }
 
     server {
-        systemProperty 'forge.enabledGameTestNamespaces', "${mod_id}"
+        systemProperty 'neoforge.enabledGameTestNamespaces', "${mod_id}"
         programArgument '--nogui'
     }
 }
@@ -51,17 +51,24 @@ dependencies {
     compileOnly project(":common")
 }
 
-tasks.named('compileJava', JavaCompile).configure {
+// NeoGradle compiles the game, but we don't want to add our common code to the game's code
+TaskCollection.metaClass.excludingNeoTasks = { ->
+    delegate.matching { !it.name.startsWith("neo") }
+}
+
+tasks.withType(JavaCompile).excludingNeoTasks().configureEach {
     source(project(":common").sourceSets.main.allSource)
 }
-tasks.withType(Javadoc).configureEach {
+
+tasks.withType(Javadoc).excludingNeoTasks().configureEach {
     source(project(":common").sourceSets.main.allJava)
 }
+
 tasks.named("sourcesJar", Jar) {
     from(project(":common").sourceSets.main.allSource)
 }
 
-processResources {
+tasks.withType(ProcessResources).excludingNeoTasks().configureEach {
     from project(":common").sourceSets.main.resources
 }
 
@@ -92,7 +99,7 @@ if (System.getenv().CURSEFORGE_KEY) {
         apiToken = System.getenv().CURSEFORGE_KEY
 
         def mainFile = upload(project.curseforge_id, jar)
-        mainFile.releaseType = 'beta'
+        mainFile.releaseType = 'release'
         mainFile.addGameVersion "NeoForge"
         mainFile.addGameVersion "${minecraft_version}"
         mainFile.addGameVersion "Java 17"
@@ -109,7 +116,7 @@ if (System.getenv().MODRINTH_KEY) {
     modrinth {
         token = System.getenv().MODRINTH_KEY
         projectId = project.modrinth_id
-        versionType = "beta"
+        versionType = "release"
         versionName = "${mod_name} ${minecraft_version}"
         versionNumber = project.version
         uploadFile = jar
