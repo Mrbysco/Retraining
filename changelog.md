@@ -1,1 +1,1 @@
-* Initial update to 1.20.1
+* Don't allow resetting the trades if there's an item available in the 3rd slot
