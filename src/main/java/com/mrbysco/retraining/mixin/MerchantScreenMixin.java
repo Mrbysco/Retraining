@@ -24,7 +24,7 @@ public abstract class MerchantScreenMixin extends ContainerScreen<MerchantContai
 
 	@Inject(at = @At("TAIL"), method = "init()V")
 	public void retrainingInit(CallbackInfo ci) {
-		if(Retraining.isVillager) {
+		if (Retraining.isVillager) {
 			this.addButton(new Button(width / 2 + 112, height / 2 - 78, 20, 20, new StringTextComponent("\u27f3"), (button) -> {
 				PacketHandler.CHANNEL.sendToServer(new ResetTradesMessage());
 			}));

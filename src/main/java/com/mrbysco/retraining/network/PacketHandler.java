@@ -18,7 +18,7 @@ public class PacketHandler {
 
 	private static int id = 0;
 
-	public static void init(){
+	public static void init() {
 		CHANNEL.registerMessage(id++, ResetTradesMessage.class, ResetTradesMessage::encode, ResetTradesMessage::decode, ResetTradesMessage::handle);
 		CHANNEL.registerMessage(id++, UpdateMessage.class, UpdateMessage::encode, UpdateMessage::decode, UpdateMessage::handle);
 	}

@@ -10,17 +10,17 @@ import org.apache.logging.log4j.Logger;
 
 @Mod(Retraining.MOD_ID)
 public class Retraining {
-    public static final String MOD_ID = "retraining";
-    private static final Logger LOGGER = LogManager.getLogger();
+	public static final String MOD_ID = "retraining";
+	private static final Logger LOGGER = LogManager.getLogger();
 
-    public static boolean isVillager = false;
+	public static boolean isVillager = false;
 
-    public Retraining() {
-        IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
-        eventBus.addListener(this::setup);
-    }
+	public Retraining() {
+		IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
+		eventBus.addListener(this::setup);
+	}
 
-    private void setup(final FMLCommonSetupEvent event) {
-        PacketHandler.init();
-    }
+	private void setup(final FMLCommonSetupEvent event) {
+		PacketHandler.init();
+	}
 }

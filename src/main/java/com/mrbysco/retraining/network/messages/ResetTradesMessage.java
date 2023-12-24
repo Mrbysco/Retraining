@@ -33,17 +33,20 @@ public class ResetTradesMessage {
 			if (ctx.getDirection().getReceptionSide().isServer() && ctx.getSender() != null) {
 				ServerPlayerEntity player = ctx.getSender();
 				Container container = player.containerMenu;
-				if(container instanceof MerchantContainer) {
-					IMerchant merchant = ((MerchantContainerAccessor)container).getTrader();
-					if(merchant instanceof VillagerEntity) {
-						VillagerEntity villager = (VillagerEntity) merchant;
-						if(villager.getVillagerXp() == 0) {
-							MerchantOffers newOffers = new MerchantOffers();
-							((AbstractVillagerEntityAccessor)villager).setOffers(newOffers);
-							((VillagerEntityAccessor)villager).invokeUpdateTrades();
-							((VillagerEntityAccessor)villager).invokeUpdateSpecialPrices(player);
-							player.sendMerchantOffers(player.containerCounter, newOffers, villager.getVillagerData().getLevel(),
-									villager.getVillagerXp(), villager.showProgressBar(), villager.canRestock());
+				if (container instanceof MerchantContainer) {
+					MerchantContainer merchantContainer = (MerchantContainer) container;
+					if (!merchantContainer.getSlot(2).hasItem()) {
+						IMerchant merchant = ((MerchantContainerAccessor) container).getTrader();
+						if (merchant instanceof VillagerEntity) {
+							VillagerEntity villager = (VillagerEntity) merchant;
+							if (villager.getVillagerXp() == 0) {
+								MerchantOffers newOffers = new MerchantOffers();
+								((AbstractVillagerEntityAccessor) villager).setOffers(newOffers);
+								((VillagerEntityAccessor) villager).invokeUpdateTrades();
+								((VillagerEntityAccessor) villager).invokeUpdateSpecialPrices(player);
+								player.sendMerchantOffers(player.containerCounter, newOffers, villager.getVillagerData().getLevel(),
+										villager.getVillagerXp(), villager.showProgressBar(), villager.canRestock());
+							}
 						}
 					}
 				}

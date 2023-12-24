@@ -28,8 +28,8 @@ public abstract class MerchantContainerMixin extends Container {
 	@Inject(at = @At("TAIL"), method = "<init>(ILnet/minecraft/entity/player/PlayerInventory;Lnet/minecraft/entity/merchant/IMerchant;)V")
 	public void retrainingConstructor(int id, PlayerInventory playerInventory, IMerchant merchant, CallbackInfo ci) {
 		PlayerEntity player = playerInventory.player;
-		if(!player.level.isClientSide) {
-			PacketHandler.CHANNEL.send(PacketDistributor.PLAYER.with(() -> (ServerPlayerEntity)playerInventory.player), new UpdateMessage(merchant instanceof VillagerEntity, merchant.getVillagerXp()));
+		if (!player.level.isClientSide) {
+			PacketHandler.CHANNEL.send(PacketDistributor.PLAYER.with(() -> (ServerPlayerEntity) playerInventory.player), new UpdateMessage(merchant instanceof VillagerEntity, merchant.getVillagerXp()));
 		}
 	}
 }
