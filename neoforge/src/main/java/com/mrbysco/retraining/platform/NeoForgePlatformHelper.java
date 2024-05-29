@@ -1,7 +1,7 @@
 package com.mrbysco.retraining.platform;
 
-import com.mrbysco.retraining.network.messages.ResetTradesPayload;
-import com.mrbysco.retraining.network.messages.UpdatePayload;
+import com.mrbysco.retraining.messages.ResetTradesPayload;
+import com.mrbysco.retraining.messages.UpdatePayload;
 import com.mrbysco.retraining.platform.services.IPlatformHelper;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
@@ -11,7 +11,7 @@ public class NeoForgePlatformHelper implements IPlatformHelper {
 
 	@Override
 	public void sendResetTradesMessage() {
-		PacketDistributor.SERVER.noArg().send(new ResetTradesPayload());
+		PacketDistributor.sendToServer(new ResetTradesPayload());
 	}
 
 	@Override

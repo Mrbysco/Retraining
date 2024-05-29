@@ -1,20 +1,18 @@
 package com.mrbysco.retraining.network;
 
 import com.mrbysco.retraining.Constants;
+import com.mrbysco.retraining.messages.ResetTradesPayload;
+import com.mrbysco.retraining.messages.UpdatePayload;
 import com.mrbysco.retraining.network.handler.ClientPayloadHandler;
 import com.mrbysco.retraining.network.handler.ServerPayloadHandler;
-import com.mrbysco.retraining.network.messages.ResetTradesPayload;
-import com.mrbysco.retraining.network.messages.UpdatePayload;
-import net.neoforged.neoforge.network.event.RegisterPayloadHandlerEvent;
-import net.neoforged.neoforge.network.registration.IPayloadRegistrar;
+import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
+import net.neoforged.neoforge.network.registration.PayloadRegistrar;
 
 public class PacketHandler {
-	public static void setupPackets(final RegisterPayloadHandlerEvent event) {
-		final IPayloadRegistrar registrar = event.registrar(Constants.MOD_ID);
+	public static void setupPackets(final RegisterPayloadHandlersEvent event) {
+		final PayloadRegistrar registrar = event.registrar(Constants.MOD_ID);
 
-		registrar.play(UpdatePayload.ID, UpdatePayload::new, handler -> handler
-				.client(ClientPayloadHandler.getInstance()::handleData));
-		registrar.play(ResetTradesPayload.ID, ResetTradesPayload::new, handler -> handler
-				.server(ServerPayloadHandler.getInstance()::handleData));
+		registrar.playToClient(UpdatePayload.ID, UpdatePayload.CODEC, ClientPayloadHandler.getInstance()::handleData);
+		registrar.playToServer(ResetTradesPayload.ID, ResetTradesPayload.CODEC, ServerPayloadHandler.getInstance()::handleData);
 	}
 }

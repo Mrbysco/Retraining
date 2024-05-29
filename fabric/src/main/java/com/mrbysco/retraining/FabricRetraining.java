@@ -1,6 +1,9 @@
 package com.mrbysco.retraining;
 
+import com.mrbysco.retraining.messages.ResetTradesPayload;
+import com.mrbysco.retraining.messages.UpdatePayload;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 
 public class FabricRetraining implements ModInitializer {
@@ -9,9 +12,11 @@ public class FabricRetraining implements ModInitializer {
 	public void onInitialize() {
 		CommonRetraining.init();
 
-		ServerPlayNetworking.registerGlobalReceiver(Constants.RESET_TRADES_PACKET_ID, (server, player, handler, buf, responseSender) -> {
-			server.execute(() -> {
-				CommonRetraining.resetTrades(player);
+		PayloadTypeRegistry.playS2C().register(UpdatePayload.ID, UpdatePayload.CODEC);
+		PayloadTypeRegistry.playC2S().register(ResetTradesPayload.ID, ResetTradesPayload.CODEC);
+		ServerPlayNetworking.registerGlobalReceiver(ResetTradesPayload.ID, (payload, context) -> {
+			context.player().server.execute(() -> {
+				CommonRetraining.resetTrades(context.player());
 			});
 		});
 	}
