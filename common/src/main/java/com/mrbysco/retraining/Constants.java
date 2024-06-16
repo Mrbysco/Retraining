@@ -9,6 +9,6 @@ public class Constants {
 	public static final String MOD_NAME = "Retraining";
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_NAME);
 
-	public static final ResourceLocation RESET_TRADES_PACKET_ID = new ResourceLocation(MOD_ID, "reset_trades");
-	public static final ResourceLocation UPDATE_PACKET_ID = new ResourceLocation(MOD_ID, "update");
+	public static final ResourceLocation RESET_TRADES_PACKET_ID = ResourceLocation.fromNamespaceAndPath(MOD_ID, "reset_trades");
+	public static final ResourceLocation UPDATE_PACKET_ID = ResourceLocation.fromNamespaceAndPath(MOD_ID, "update");
 }
