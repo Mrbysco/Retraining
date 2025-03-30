@@ -27,7 +27,7 @@ public class CommonRetraining {
 					((AbstractVillagerEntityAccessor) villager).setOffers(newOffers);
 					((VillagerAccessor) villager).invokeUpdateTrades();
 					((VillagerAccessor) villager).invokeUpdateSpecialPrices(player);
-					player.sendMerchantOffers(container.containerId, newOffers, villager.getVillagerData().getLevel(),
+					player.sendMerchantOffers(container.containerId, newOffers, villager.getVillagerData().level(),
 							villager.getVillagerXp(), villager.showProgressBar(), villager.canRestock());
 				}
 			}

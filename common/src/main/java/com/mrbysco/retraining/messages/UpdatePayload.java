@@ -5,7 +5,6 @@ import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
-import net.minecraft.resources.ResourceLocation;
 import org.jetbrains.annotations.NotNull;
 
 public record UpdatePayload(boolean villager, int experience) implements CustomPacketPayload {
@@ -16,7 +15,7 @@ public record UpdatePayload(boolean villager, int experience) implements CustomP
 			(payload) -> payload.experience,
 			UpdatePayload::new
 	);
-	public static final Type<UpdatePayload> ID = new Type<>(ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "update"));
+	public static final Type<UpdatePayload> ID = new Type<>(Constants.UPDATE_PACKET_ID);
 
 	@Override
 	@NotNull
