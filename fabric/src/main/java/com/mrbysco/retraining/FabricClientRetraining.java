@@ -11,7 +11,7 @@ public class FabricClientRetraining implements ClientModInitializer {
 		ClientPlayNetworking.registerGlobalReceiver(UpdatePayload.ID, (payload, context) -> {
 			boolean villager = payload.villager();
 			int experience = payload.experience();
-			CommonRetraining.isVillager = experience == 0 && villager;
+			CommonRetraining.isVillager = (FabricRetraining.config.get().general.ignoreExperience || experience == 0) && villager;
 		});
 	}
 }

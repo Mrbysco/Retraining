@@ -20,6 +20,9 @@
     ],
     "client": [
       "com.mrbysco.retraining.FabricClientRetraining"
+    ],
+    "modmenu": [
+      "com.mrbysco.retraining.config.RetrainingMenuIntegration"
     ]
   },
   "mixins": [
@@ -29,6 +32,7 @@
     "fabricloader": ">=0.16.14",
     "minecraft": "~1.21.7",
     "java": ">=21",
-    "fabric-api": "*"
+    "fabric-api": "*",
+    "cloth-config": ">=19"
   }
 }

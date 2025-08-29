@@ -3,6 +3,7 @@ package com.mrbysco.retraining;
 import com.mrbysco.retraining.mixin.AbstractVillagerEntityAccessor;
 import com.mrbysco.retraining.mixin.MerchantMenuAccessor;
 import com.mrbysco.retraining.mixin.VillagerAccessor;
+import com.mrbysco.retraining.platform.Services;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.inventory.AbstractContainerMenu;
@@ -22,7 +23,9 @@ public class CommonRetraining {
 		if (container instanceof MerchantMenu merchantMenu && !merchantMenu.getSlot(2).hasItem()) {
 			Merchant merchant = ((MerchantMenuAccessor) container).getTrader();
 			if (merchant instanceof Villager villager) {
-				if (villager.getVillagerXp() == 0) {
+				boolean ignoreExperienceCheck = Services.PLATFORM.ignoreExperienceCheck();
+				if (ignoreExperienceCheck || villager.getVillagerXp() == 0) {
+					villager.setVillagerXp(0);
 					MerchantOffers newOffers = new MerchantOffers();
 					((AbstractVillagerEntityAccessor) villager).setOffers(newOffers);
 					((VillagerAccessor) villager).invokeUpdateTrades();

@@ -1,0 +1,9 @@
+{
+  "retraining.networking.update.failed": "Failed to update villager {}",
+  "retraining.networking.reset_trades.failed": "Failed to reset trades for villager {}",
+  "retraining.configuration.general": "General",
+  "retraining.configuration.ignoreExperience": "Ignore Experience",
+  "text.autoconfig.retraining.title": "Retraining",
+  "text.autoconfig.retraining.option.general": "General",
+  "text.autoconfig.retraining.option.general.ignoreExperience": "Ignore Experience"
+}

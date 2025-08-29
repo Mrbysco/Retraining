@@ -1,4 +1,0 @@
-{
-  "retraining.networking.update.failed": "Failed to update villager {}",
-  "retraining.networking.reset_trades.failed": "Failed to reset trades for villager {}"
-}

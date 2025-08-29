@@ -111,8 +111,7 @@ if (System.getenv().CURSEFORGE_KEY) {
         mainFile.changelog = file("$project.rootDir/changelog.md")
         mainFile.changelogType = 'markdown'
 
-        mainFile.addRequirement("fabric-api")
-//        mainFile.addOptional()
+        mainFile.addRequirement("fabric-api", "cloth-config")
     }
 }
 
@@ -130,6 +129,7 @@ if (System.getenv().MODRINTH_KEY) {
 
         dependencies {
             required.project "fabric-api"
+            required.project "cloth-config"
         }
     }
 }

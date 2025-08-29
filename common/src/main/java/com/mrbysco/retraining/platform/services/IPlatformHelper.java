@@ -14,4 +14,9 @@ public interface IPlatformHelper {
 	 */
 	void sendUpdateMessage(Player player, boolean villager, int experience);
 
+	/**
+	 * Check if the config option to ignore experience check is enabled
+	 */
+	boolean ignoreExperienceCheck();
+
 }
