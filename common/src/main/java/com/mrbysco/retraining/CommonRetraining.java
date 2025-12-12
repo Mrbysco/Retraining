@@ -5,7 +5,7 @@ import com.mrbysco.retraining.mixin.MerchantMenuAccessor;
 import com.mrbysco.retraining.mixin.VillagerAccessor;
 import com.mrbysco.retraining.platform.Services;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.entity.npc.Villager;
+import net.minecraft.world.entity.npc.villager.Villager;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.MerchantMenu;
 import net.minecraft.world.item.trading.Merchant;
@@ -28,7 +28,7 @@ public class CommonRetraining {
 					villager.setVillagerXp(0);
 					MerchantOffers newOffers = new MerchantOffers();
 					((AbstractVillagerEntityAccessor) villager).setOffers(newOffers);
-					((VillagerAccessor) villager).invokeUpdateTrades();
+					((VillagerAccessor) villager).invokeUpdateTrades(player.level());
 					((VillagerAccessor) villager).invokeUpdateSpecialPrices(player);
 					player.sendMerchantOffers(container.containerId, newOffers, villager.getVillagerData().level(),
 							villager.getVillagerXp(), villager.showProgressBar(), villager.canRestock());

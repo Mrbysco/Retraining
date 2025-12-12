@@ -1,7 +1,7 @@
 package com.mrbysco.retraining.mixin;
 
 import com.mrbysco.retraining.platform.Services;
-import net.minecraft.world.entity.npc.Villager;
+import net.minecraft.world.entity.npc.villager.Villager;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
