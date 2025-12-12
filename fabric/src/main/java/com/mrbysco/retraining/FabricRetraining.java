@@ -21,7 +21,7 @@ public class FabricRetraining implements ModInitializer {
 		PayloadTypeRegistry.playS2C().register(UpdatePayload.ID, UpdatePayload.CODEC);
 		PayloadTypeRegistry.playC2S().register(ResetTradesPayload.ID, ResetTradesPayload.CODEC);
 		ServerPlayNetworking.registerGlobalReceiver(ResetTradesPayload.ID, (payload, context) -> {
-			context.player().getServer().execute(() -> {
+			context.server().execute(() -> {
 				CommonRetraining.resetTrades(context.player());
 			});
 		});
