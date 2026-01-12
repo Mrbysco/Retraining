@@ -2,7 +2,6 @@
   "required": true,
   "minVersion": "0.8.4",
   "package": "com.mrbysco.retraining.mixin",
-  "refmap": "${mod_id}.refmap.json",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
     "AbstractVillagerEntityAccessor",
@@ -12,8 +11,6 @@
   ],
   "client": [
     "MerchantScreenMixin"
-  ],
-  "server": [
   ],
   "injectors": {
     "defaultRequire": 1
