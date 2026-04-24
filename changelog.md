@@ -1,1 +1,1 @@
-* Update mixin setup
+* Update to 26.1.2
