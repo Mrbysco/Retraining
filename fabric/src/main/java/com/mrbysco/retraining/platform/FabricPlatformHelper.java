@@ -1,6 +1,5 @@
 package com.mrbysco.retraining.platform;
 
-import com.mrbysco.retraining.FabricRetraining;
 import com.mrbysco.retraining.messages.ResetTradesPayload;
 import com.mrbysco.retraining.messages.UpdatePayload;
 import com.mrbysco.retraining.platform.services.IPlatformHelper;
@@ -16,10 +15,5 @@ public class FabricPlatformHelper implements IPlatformHelper {
 	@Override
 	public void sendUpdateMessage(Player player, boolean villager, int experience) {
 		net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking.send((net.minecraft.server.level.ServerPlayer) player, new UpdatePayload(villager, experience));
-	}
-
-	@Override
-	public boolean ignoreExperienceCheck() {
-		return FabricRetraining.config.get().general.ignoreExperience;
 	}
 }

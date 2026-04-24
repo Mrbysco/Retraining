@@ -15,7 +15,6 @@ public class NeoForgeRetraining {
 
 	public NeoForgeRetraining(IEventBus eventBus, ModContainer container, Dist dist) {
 		container.registerConfig(ModConfig.Type.COMMON, RetrainingConfig.commonSpec);
-		eventBus.register(RetrainingConfig.class);
 
 		CommonRetraining.init();
 

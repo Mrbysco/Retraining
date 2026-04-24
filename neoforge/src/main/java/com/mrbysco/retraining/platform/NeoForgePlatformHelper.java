@@ -1,6 +1,5 @@
 package com.mrbysco.retraining.platform;
 
-import com.mrbysco.retraining.config.RetrainingConfig;
 import com.mrbysco.retraining.messages.ResetTradesPayload;
 import com.mrbysco.retraining.messages.UpdatePayload;
 import com.mrbysco.retraining.platform.services.IPlatformHelper;
@@ -18,10 +17,5 @@ public class NeoForgePlatformHelper implements IPlatformHelper {
 	@Override
 	public void sendUpdateMessage(Player player, boolean villager, int experience) {
 		PacketDistributor.sendToPlayer((ServerPlayer) player, new UpdatePayload(villager, experience));
-	}
-
-	@Override
-	public boolean ignoreExperienceCheck() {
-		return RetrainingConfig.COMMON.ignoreExperience.getAsBoolean();
 	}
 }
