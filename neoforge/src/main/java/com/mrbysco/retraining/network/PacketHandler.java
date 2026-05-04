@@ -10,7 +10,7 @@ import net.neoforged.neoforge.network.registration.PayloadRegistrar;
 
 public class PacketHandler {
 	public static void setupPackets(final RegisterPayloadHandlersEvent event) {
-		final PayloadRegistrar registrar = event.registrar(Constants.MOD_ID);
+		final PayloadRegistrar registrar = event.registrar(Constants.MOD_ID).optional();
 
 		registrar.playToClient(UpdatePayload.ID, UpdatePayload.CODEC, ClientPayloadHandler.getInstance()::handleData);
 		registrar.playToServer(ResetTradesPayload.ID, ResetTradesPayload.CODEC, ServerPayloadHandler.getInstance()::handleData);
