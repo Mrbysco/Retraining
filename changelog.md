@@ -1,1 +1,1 @@
-* Mark networking as optional to allow users to install it server-side and have it be optional for clients (NeoForge)
+* Update to 26.2
