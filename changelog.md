@@ -1,1 +1,1 @@
-* Update to 26.2
+* Only send update packet to clients with the mod installed (NeoForge)
