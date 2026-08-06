@@ -16,6 +16,8 @@ public class NeoForgePlatformHelper implements IPlatformHelper {
 
 	@Override
 	public void sendUpdateMessage(Player player, boolean villager, int experience) {
-		PacketDistributor.sendToPlayer((ServerPlayer) player, new UpdatePayload(villager, experience));
+		ServerPlayer serverPlayer = (ServerPlayer) player;
+		if (serverPlayer.connection.hasChannel(UpdatePayload.ID))
+			PacketDistributor.sendToPlayer(serverPlayer, new UpdatePayload(villager, experience));
 	}
 }
