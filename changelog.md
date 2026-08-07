@@ -1,1 +1,1 @@
-* Only send update packet to clients with the mod installed (NeoForge)
+* Only send update packet to clients with the mod installed (NeoForge) 
